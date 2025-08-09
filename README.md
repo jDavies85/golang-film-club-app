@@ -1,3 +1,27 @@
+## Notes
+In lieu of a proper readme these are just a collection of notes to help me with development.
+
+### Development environment
+TODO:
+- prerequisite installs
+- recommended VS code extensions etc.
+### Running the api
+To add a third party dependency, first `go get` it.
+```
+go get "github.com/gin-gonic/gin"
+```
+Then add it to the imports at the top of the file:
+```
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+```
+To run the api enter the following command
+```
+go run .
+```
 ### Cassandra
 
 Create a network

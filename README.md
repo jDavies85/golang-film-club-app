@@ -6,6 +6,12 @@ TODO:
 - prerequisite installs
 - recommended VS code extensions etc.
 ### Running the api
+To run the api enter the following command
+```
+cd src/api
+go run ./cmd/server
+```
+### Go development tips
 To add a third party dependency, first `go get` it.
 ```
 go get "github.com/gin-gonic/gin"
@@ -18,31 +24,30 @@ import (
 	"github.com/gin-gonic/gin"
 )
 ```
-To run the api enter the following command
-```
-go run .
-```
 ### Cassandra
 
-Create a network
+Create a docker network
 ```
 docker network create cassandra
 ```
-
+To inspect a docker network
+```
+docker network inspect cassandra
+```
 Run the Cassandra docker container
 ```
 docker run --rm -d --name cassandra --hostname cassandra --network cassandra cassandra
 ```
-Run this to run the `data.cql` script
+Run this to run the `data.cql` script to seed some data
 ```
 docker run --rm --network cassandra -v "$(pwd)/data.cql:/scripts/data.cql" cassandra:latest cqlsh cassandra 9042 -f /scripts/data.cql
 ```
 
-Run this to get a CQL shell to query the database
+Run this to get a CQL shell to query the database, you may need to wait a little while for the database to start. Use `ctrl + D` to exit the CQL shell.
 ```
 docker run --rm -it --network cassandra cassandra:latest cqlsh cassandra 9042 --cqlversion='3.4.7'
 ```
 Example select statement
 ```
-SELECT * FROM store.shopping_cart;
+SELECT * FROM filmclub.users_by_id;
 ```

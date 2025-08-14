@@ -13,6 +13,8 @@ type Config struct {
 	// CassandraHosts []string
 	// CassandraKeyspace string
 	// TMDBAPIKey string
+	DevAuthEnabled bool   // enable fake auth
+	DevUserID      string // UUID string of your seeded user
 }
 
 func getenv(key, def string) string {
@@ -25,8 +27,10 @@ func getenv(key, def string) string {
 // Load reads env vars (with sensible defaults) and returns a Config.
 func Load() Config {
 	return Config{
-		ServiceName: getenv("APP_SERVICE_NAME", "filmclub-api"),
-		Env:         getenv("APP_ENV", "local"),
-		HTTPPort:    getenv("APP_HTTP_PORT", "8080"),
+		ServiceName:    getenv("APP_SERVICE_NAME", "filmclub-api"),
+		Env:            getenv("APP_ENV", "local"),
+		HTTPPort:       getenv("APP_HTTP_PORT", "8080"),
+		DevAuthEnabled: getenv("APP_DEV_AUTH_ENABLED", "true") == "true",
+		DevUserID:      getenv("APP_DEV_USER_ID", "12345678-1234-1234-1234-123456789abc"),
 	}
 }

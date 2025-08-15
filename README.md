@@ -24,6 +24,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 ```
+
+TODO talk about devauth setup
 ### Cassandra
 
 Create a docker network
@@ -36,16 +38,21 @@ docker network inspect cassandra
 ```
 Run the Cassandra docker container
 ```
-docker run --rm -d --name cassandra --hostname cassandra --network cassandra cassandra
+docker run --name cassandra -p 9042:9042 -d cassandra:4.1
+```
+
+To manually connect the cassandra container to the cassandra network
+```
+docker network connect cassandra cassandra
 ```
 Run this to run the `data.cql` script to seed some data
 ```
-docker run --rm --network cassandra -v "$(pwd)/data.cql:/scripts/data.cql" cassandra:latest cqlsh cassandra 9042 -f /scripts/data.cql
+docker run --rm --network cassandra -v "$(pwd)/scripts/data.cql:/scripts/data.cql" cassandra cqlsh cassandra 9042 -f /scripts/data.cql
 ```
 
 Run this to get a CQL shell to query the database, you may need to wait a little while for the database to start. Use `ctrl + D` to exit the CQL shell.
 ```
-docker run --rm -it --network cassandra cassandra:latest cqlsh cassandra 9042 --cqlversion='3.4.7'
+docker run --rm -it --network cassandra cassandra:latest cqlsh cassandra 9042 --cqlversion='3.4.6'
 ```
 Example select statement
 ```

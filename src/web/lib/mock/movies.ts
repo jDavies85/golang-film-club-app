@@ -1,0 +1,36 @@
+import type { Movie } from '@/components/MovieSearch'
+
+
+// Minimal dummy dataset — duplicate/expand as needed
+export const MOVIES: Movie[] = [
+{ id: '1', title: 'The Shawshank Redemption', year: 1994, posterUrl: '' },
+{ id: '2', title: 'The Godfather', year: 1972, posterUrl: '' },
+{ id: '3', title: 'The Dark Knight', year: 2008, posterUrl: '' },
+{ id: '4', title: 'Pulp Fiction', year: 1994, posterUrl: '' },
+{ id: '5', title: 'Inception', year: 2010, posterUrl: '' },
+{ id: '6', title: 'Fight Club', year: 1999, posterUrl: '' },
+{ id: '7', title: 'Forrest Gump', year: 1994, posterUrl: '' },
+{ id: '8', title: 'The Matrix', year: 1999, posterUrl: '' },
+{ id: '9', title: 'Interstellar', year: 2014, posterUrl: '' },
+{ id: '10', title: 'Se7en', year: 1995, posterUrl: '' },
+{ id: '11', title: 'Gladiator', year: 2000, posterUrl: '' },
+{ id: '12', title: 'Whiplash', year: 2014, posterUrl: '' },
+{ id: '13', title: 'The Prestige', year: 2006, posterUrl: '' },
+{ id: '14', title: 'City of God', year: 2002, posterUrl: '' },
+{ id: '15', title: 'The Green Mile', year: 1999, posterUrl: '' },
+{ id: '16', title: 'Parasite', year: 2019, posterUrl: '' },
+{ id: '17', title: 'Spirited Away', year: 2001, posterUrl: '' },
+{ id: '18', title: 'The Lion King', year: 1994, posterUrl: '' },
+{ id: '19', title: 'The Departed', year: 2006, posterUrl: '' },
+{ id: '20', title: 'Goodfellas', year: 1990, posterUrl: '' },
+{ id: '21', title: 'The Social Network', year: 2010, posterUrl: '' },
+{ id: '22', title: 'Mad Max: Fury Road', year: 2015, posterUrl: '' },
+{ id: '23', title: 'Blade Runner 2049', year: 2017, posterUrl: '' },
+{ id: '24', title: 'La La Land', year: 2016, posterUrl: '' },
+{ id: '25', title: 'The Grand Budapest Hotel', year: 2014, posterUrl: '' },
+{ id: '26', title: 'Her', year: 2013, posterUrl: '' },
+{ id: '27', title: 'Casino Royale', year: 2006, posterUrl: '' },
+{ id: '28', title: 'The Dark Knight Rises', year: 2012, posterUrl: '' },
+{ id: '29', title: 'Dune', year: 2021, posterUrl: '' },
+{ id: '30', title: 'Oppenheimer', year: 2023, posterUrl: '' },
+]

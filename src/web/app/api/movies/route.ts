@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server'
 import { MOVIES } from '@/lib/mock/movies'
 
 
-export const dynamic = 'force-static'; // ok for dummy data; change to 'force-dynamic' if you add randomness
-
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)

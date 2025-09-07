@@ -11,19 +11,16 @@ export async function GET(req: Request) {
     const page = Math.max(1, Number(searchParams.get('page') || 1))
     const pageSize = Math.min(50, Math.max(1, Number(searchParams.get('pageSize') || 8)))
 
-
     // filter by title match; expand later with TMDB fields
     const filtered = q
         ? MOVIES.filter(m => m.title.toLowerCase().includes(q))
         : MOVIES
-
 
     const total = filtered.length
     const totalPages = Math.max(1, Math.ceil(total / pageSize))
     const clampedPage = Math.min(page, totalPages)
     const startIdx = (clampedPage - 1) * pageSize
     const results = filtered.slice(startIdx, startIdx + pageSize)
-
 
     return NextResponse.json({
         query: q,

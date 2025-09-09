@@ -17,7 +17,7 @@ type ApiResponse = {
     query: string
     page: number
     pageSize: number
-    total: number
+    totalResults: number
     totalPages: number
     results: Movie[]
 }
@@ -97,7 +97,7 @@ export default function MovieSearch() {
             {data && (
                 <Stack gap="sm">
                     <Text size="sm" c="dimmed">
-                        Found {data.total} result{data.total === 1 ? '' : 's'}
+                        Found {data.totalResults} result{data.totalResults === 1 ? '' : 's'}
                     </Text>
 
 

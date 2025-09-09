@@ -5,6 +5,7 @@ In lieu of a proper readme these are just a collection of notes to help me with 
 TODO:
 - prerequisite installs
 - recommended VS code extensions etc.
+
 ### Running the api
 To run the api enter the following command
 ```
@@ -28,32 +29,44 @@ import (
 TODO talk about devauth setup
 ### Cassandra
 
-Create a docker network
+Get the latest version of Cassandra
 ```
-docker network create cassandra
-```
-To inspect a docker network
-```
-docker network inspect cassandra
-```
-Run the Cassandra docker container
-```
-docker run --name cassandra -p 9042:9042 -d cassandra:4.1
+docker pull cassandra:latest
 ```
 
-To manually connect the cassandra container to the cassandra network
+Run the container
 ```
-docker network connect cassandra cassandra
-```
-Run this to run the `data.cql` script to seed some data
-```
-docker run --rm --network cassandra -v "$(pwd)/scripts/data.cql:/scripts/data.cql" cassandra cqlsh cassandra 9042 -f /scripts/data.cql
+docker run --name cassandra -p 9042:9042 -d cassandra:latest
 ```
 
 Run this to get a CQL shell to query the database, you may need to wait a little while for the database to start. Use `ctrl + D` to exit the CQL shell.
 ```
-docker run --rm -it --network cassandra cassandra:latest cqlsh cassandra 9042 --cqlversion='3.4.6'
+docker exec -it cassandra cqlsh
 ```
+
+Run this to run the `data.cql` script to seed some data
+```
+cd src\api
+Get-Content .\scripts\data.cql | docker exec -i cassandra cqlsh
+```
+Then star a cql session and run the following query
+```
+SELECT table_name 
+FROM system_schema.tables 
+WHERE keyspace_name = 'filmclub';
+```
+and you should see the following output
+```
+ table_name
+----------------------
+ club_members_by_club
+     film_clubs_by_id
+    membership_guards
+   user_clubs_by_user
+        users_by_auth
+          users_by_id
+```
+
 Example select statement
 ```
 SELECT * FROM filmclub.users_by_id;
